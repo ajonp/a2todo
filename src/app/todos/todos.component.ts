@@ -18,12 +18,17 @@ export class TodosComponent implements OnInit {
   ngOnInit() {
     this.todos = this._todoService.getTodos();
   }
+  setEdit(){
+    this.appState = 'default';
+    this.text = "";
+  }
   addTodo(){
     var newTodo = {
       text: this.text
     }
     this.todos.push(newTodo);
     this._todoService.addTodo(newTodo);
+    this.text = "";
   }
   deleteTodo(todoText){
     for(var i = 0; i < this.todos.length;i++){
@@ -45,5 +50,6 @@ export class TodosComponent implements OnInit {
       }
     }
     this._todoService.updateTodo(this.oldText,this.text);
+    this.text = "";
   }
 }

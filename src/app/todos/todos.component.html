@@ -1,4 +1,5 @@
-<h3>Add todo</h3>
+<h3 *ngIf="appState == 'default'">Add todo</h3>
+<button *ngIf="appState == 'edit'" (click)="setEdit()" class="btn btn-success">Add</button>
 <div *ngIf="appState == 'default'">
   <form (submit)="addTodo()">
     <input class="form-control" type="text" [(ngModel)]="text" name="text">
@@ -12,7 +13,7 @@
 </div>
 <h3>Todo List</h3>
 <ul class="list-group">
-  <li *ngFor="let todo of todos" class="list-group-item">
+  <li *ngFor="let todo of todos" class="list-group-item" style="cursor: pointer;">
     <span (click)="editTodo(todo)">{{todo.text}}</span> 
     <button class="btn btn-danger btn-mini" (click)="deleteTodo(todo.text)">X</button>
   </li>
